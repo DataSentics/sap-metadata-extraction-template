@@ -1,0 +1,74 @@
+{
+	"name": "s18_CDSViews_column_metadata",
+	"properties": {
+		"folder": {
+			"name": "s18_metadata"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "s18_sap_cdc_connector",
+						"type": "LinkedServiceReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "sapdemo_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          TABNAME as string,",
+				"          FIELDNAME as string,",
+				"          POSITION as string,",
+				"          KEYFLAG as string,",
+				"          ROLLNAME as string,",
+				"          MANDATORY as string,",
+				"          CHECKTABLE as string,",
+				"          INTTYPE as string,",
+				"          INTLEN as string,",
+				"          REFTABLE as string,",
+				"          PRECFIELD as string,",
+				"          REFFIELD as string,",
+				"          DATATYPE as string,",
+				"          LENG as string,",
+				"          DECIMALS as string,",
+				"          DOMNAME as string,",
+				"          DESCRIPTION as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     store: 'SapOdp',",
+				"     format: 'sapObject',",
+				"     staged: true,",
+				"     context: 'ABAP_CDS',",
+				"     objectName: 'ZTBLCOLMETADATA$E',",
+				"     readMode: 'fullLoad',",
+				"     partitionBy('hash', 1)) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'raw',",
+				"     folderPath: 's18/metadata/z_tablecolumnsmetadata',",
+				"     truncate: true,",
+				"     compressionCodec: 'snappy',",
+				"     partitionFileNames:['full_load.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

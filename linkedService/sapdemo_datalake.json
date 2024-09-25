@@ -1,0 +1,16 @@
+{
+	"name": "sapdemo_datalake",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://[enter container here].dfs.core.windows.net/",
+			"encryptedCredential": ""
+		},
+		"connectVia": {
+			"referenceName": "azure-runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "s18_sap_table_connector",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "SAP S18 Table Connection",
+		"annotations": [],
+		"type": "SapTable",
+		"typeProperties": {
+			"clientId": "600",
+			"sncMode": false,
+			"userName": "",
+			"server": "",
+			"systemNumber": "01",
+			"encryptedCredential": ""
+		},
+		"connectVia": {
+			"referenceName": "sap-demo-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

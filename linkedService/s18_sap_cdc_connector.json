@@ -1,0 +1,22 @@
+{
+	"name": "s18_sap_cdc_connector",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "SAP S18 CDC Connection",
+		"annotations": [],
+		"type": "SapOdp",
+		"typeProperties": {
+			"clientId": "600",
+			"sncMode": false,
+			"userName": "",
+			"subscriberName": "adf_cdc",
+			"server": "",
+			"systemNumber": "01",
+			"encryptedCredential": ""
+		},
+		"connectVia": {
+			"referenceName": "sap-demo-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

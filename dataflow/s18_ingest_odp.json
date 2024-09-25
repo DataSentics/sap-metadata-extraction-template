@@ -1,0 +1,72 @@
+{
+	"name": "s18_ingest_odp",
+	"properties": {
+		"folder": {
+			"name": "SAP_S4"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "s18_sap_cdc_connector",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SAPDataLoad"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "sapdemo_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "addFields"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     context as string,",
+				"     odp_name as string,",
+				"     key_columns as string[] ([\"foo\",\"bar\"]),",
+				"     target_blob_container as string,",
+				"     target_path as string,",
+				"     ingest_mode as string (\"fullAndIncrementalLoad\"),",
+				"     table_name as string,",
+				"     system_name as string",
+				"}",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     store: 'SapOdp',",
+				"     format: 'sapObject',",
+				"     staged: true,",
+				"     context: ($context),",
+				"     objectName: ($odp_name),",
+				"     readMode: ($ingest_mode),",
+				"     keys: ($key_columns),",
+				"     fixDecimalPrecision: true,",
+				"     partitionBy('hash', 1)) ~> SAPDataLoad",
+				"SAPDataLoad derive({_SystemName} = $system_name,",
+				"          {_UpdateTimestamp} = currentUTC(),",
+				"          {_Delete} = iif(isDelete(), 'X', '')) ~> addFields",
+				"addFields sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     fileSystem: ($target_blob_container),",
+				"     folderPath: (iif(equals($ingest_mode, \"fullAndIncrementalLoad\"), concat($target_path, \"/\", toString(currentTimestamp(), 'yyyy-MM-dd_HH-mm-ss'), \"_\", uuid()), $target_path)",
+				"),",
+				"     truncate: ($ingest_mode == \"fullLoad\"),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
+			]
+		}
+	}
+}

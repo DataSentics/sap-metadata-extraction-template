@@ -1,0 +1,72 @@
+{
+	"name": "s18_CDSViews_metadata",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy into parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rfcTableOptions": "",
+						"customRfcReadTableFunctionModule": "",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "s18_table_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "ZCDSMETADATA"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sapdemo_datalake_target_full_load_parquet",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "raw",
+							"path": "s18/metadata/z_cdsviewsmetadata"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/extraction"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-06-29T08:21:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
