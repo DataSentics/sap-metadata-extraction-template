@@ -1,0 +1,258 @@
+{
+	"name": "s18_dd03l",
+	"properties": {
+		"description": "Table and extractor columns",
+		"activities": [
+			{
+				"name": "s18_dd03l_0",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_0",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_0",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_3",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_4",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_4",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_5",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_4",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_5",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_6",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_5",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_6",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_7",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_6",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_7",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_8",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_7",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_8",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_9",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_8",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_9",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "s18_dd03l_merge",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "s18_dd03l_9",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd03l_merge",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/01_extract_data"
+		},
+		"annotations": []
+	}
+}

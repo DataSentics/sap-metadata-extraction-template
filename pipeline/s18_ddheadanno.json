@@ -1,6 +1,7 @@
 {
-	"name": "s18_table_foreign_keys",
+	"name": "s18_ddheadanno",
 	"properties": {
+		"description": "CDSView header annotations",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "NAME LIKE 'OBJECTMODEL.%'\nOR NAME LIKE 'ANALYTICS%'\nOR NAME EQ 'VDM.VIEWTYPE'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZTBLFK"
+							"table_name": "DDHEADANNO"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/z_tableforeignkeys"
+							"path": "s18/metadata/ddheadanno"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/CDSViews"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-07-12T14:38:33Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

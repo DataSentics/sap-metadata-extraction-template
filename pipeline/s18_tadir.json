@@ -1,0 +1,73 @@
+{
+	"name": "s18_tadir",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy into parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rfcTableOptions": "DEVCLASS NE '$TMP'",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "OBJECT,OBJ_NAME,AUTHOR,DEVCLASS,SRCSYSTEM",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "s18_table_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "TADIR"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sapdemo_datalake_target_full_load_parquet",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "raw",
+							"path": "s18/metadata/tadir"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/01_extract_data"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-21T11:05:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

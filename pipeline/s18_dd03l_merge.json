@@ -1,9 +1,9 @@
 {
-	"name": "s18_table_columns_metadata",
+	"name": "s18_dd03l_merge",
 	"properties": {
 		"activities": [
 			{
-				"name": "copy into parquet",
+				"name": "Data flow1",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -16,15 +16,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "s18_CDSViews_column_metadata",
+						"referenceName": "dataflow1",
 						"type": "DataFlowReference"
-					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "sapdemo_datalake",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "staging/adf"
 					},
 					"compute": {
 						"coreCount": 8,
@@ -35,10 +28,8 @@
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/DD03L"
 		},
-		"annotations": [],
-		"lastPublishTime": "2024-07-12T15:22:37Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

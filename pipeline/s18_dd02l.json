@@ -1,6 +1,7 @@
 {
-	"name": "s18_tables_metadata",
+	"name": "s18_dd02l",
 	"properties": {
+		"description": "Tables\n\ncontflag != 'L' - Table for storing temporary data \ncontflag != 'W' - System table, contents transportable with own name range",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "AS4LOCAL EQ 'A'\nAND TABCLASS NE 'VIEW'\nAND CONTFLAG NE ''\nAND CONTFLAG NE 'L'\nAND CONTFLAG NE 'W'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZTBLMETADATA"
+							"table_name": "DD02L"
 						}
 					}
 				],
@@ -56,14 +58,14 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/z_tablesmetadata"
+							"path": "s18/metadata/dd02l"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/tables"
 		},
 		"annotations": [],
 		"lastPublishTime": "2024-05-21T11:05:25Z"

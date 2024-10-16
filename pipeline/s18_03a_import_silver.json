@@ -1,0 +1,33 @@
+{
+	"name": "s18_03a_import_silver",
+	"properties": {
+		"activities": [
+			{
+				"name": "notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/jiri.koutny@datasentics.com/data-modeler-db-preparation/sqlite/01_import_silver"
+				},
+				"linkedServiceName": {
+					"referenceName": "single_node_cluster",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/03_create_sqlite"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-07T07:53:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

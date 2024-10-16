@@ -1,0 +1,33 @@
+{
+	"name": "s18_02b_create_silver_tables",
+	"properties": {
+		"activities": [
+			{
+				"name": "notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/jiri.koutny@datasentics.com/data-modeler-db-preparation/silver/create_silver_tables"
+				},
+				"linkedServiceName": {
+					"referenceName": "single_node_cluster",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/02_create_tables"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-19T06:26:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
