@@ -1,0 +1,47 @@
+{
+	"name": "s18_merge_dd03l",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "sapdemo_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "ddl03parts"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "sapdemo_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "ddl03"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'raw',",
+				"     wildcardPaths:['s18/metadata/dd03l_parts/*']) ~> ddl03parts",
+				"ddl03parts sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'raw',",
+				"     folderPath: 's18/metadata/dd03l',",
+				"     truncate: true,",
+				"     compressionCodec: 'none',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> ddl03"
+			]
+		}
+	}
+}
