@@ -10,6 +10,44 @@ In the first stage, the base SAP tables are ingested into Azure Blob storage. Fr
 
 We provide you with a pre-built configuration to set up the metadata extraction pipelines in your ADF quickly.
 
+### Extracted tables list
+
+Our metadata pipeline extracts 26 tables contained in every SAP ERP which can be composed into advanced easy-to-understand DD (Data dictionary) data model.
+
+Note, that the tables are not always exported exactly as they are stored in the ABAP, but we sometimes apply simple filters on them in order to minimize amount of the ingested data.
+
+The extracted tables are the following:
+
+| Table name | Description | Category |
+|---|---|---|
+| **DD01L** | Domain data | Domains |
+| **DD02B** | DD: Header for Structured Objects	| CDS views |
+| **DD02L** | Detailed metadata of SAP tables | Tables |
+| **DD02T** | SAP DD: SAP Table Texts | Tables |
+| **DD03L** | Field definition of tables | General |
+| **DD03ND** | DD: Attributes of a Node of a Structured Object | CDS views |
+| **DD04T** | DD: Descriptions of fields | CDS views |
+| **DD05B** | DD: Associations for Structured Objects: Fields | CDS views |
+| **DD05S** | Foreign key fields | Tables |
+| **DD07T** | DD: Texts for Domain Fixed Value | Domains |
+| **DD08B** | DD: Associations (Headers) for Structured Objects	 | CDS views |
+| **DD08L** | R/3 DD: relationship definitions | Tables |
+| **DD08T** | Texts on the relationship definitions	| Tables |
+| **DD26S** | Base tables and foreign key relationships for a view | CDS views |
+| **DD27S** | Fields in an Aggregate (View, MC Object, Lock Object) | CDS views |
+| **DDDDLSRCT** | DDL Source Texts | CDS views |
+| **DDHEADANNO** | DD: Annotations: Header | CDS views |
+| **DDLDEPENDENCY** | DD: Objects in a DDL Source | CDS views |
+| **DF14L** | Application Components | Application components |
+| **DD14T** | Business Application Component Names | Application components |
+| **RODSAPPL** | DataSource Application Components | Extractors |
+| **RODSAPPT** | Texts for Application Components of a DataSource | Extractors |
+| **ROOSFIELD** | DataSource Fields | Extractors |
+| **ROOSOURCE** | Table Header for OLTP Sources | Extractors |
+| **TADIR** | Directory of Repository Objects | General |
+| **TDEVC** | Packages | General |
+
+
 ## Installation
 
 ### 1. ADF Linked Services Setup
