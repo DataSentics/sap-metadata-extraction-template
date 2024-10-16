@@ -1,5 +1,5 @@
 {
-	"name": "s18_table_foreign_key_conditions",
+	"name": "s18_tdevc",
 	"properties": {
 		"activities": [
 			{
@@ -19,6 +19,7 @@
 						"type": "SapTableSource",
 						"rfcTableOptions": "",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +47,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZTBLFKCOND"
+							"table_name": "TDEVC"
 						}
 					}
 				],
@@ -56,17 +57,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/z_tableforeignkeyconditions"
+							"path": "s18/metadata/tdevc"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-07-12T14:33:25Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

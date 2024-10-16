@@ -1,0 +1,75 @@
+{
+	"name": "_s18_run_all",
+	"properties": {
+		"activities": [
+			{
+				"name": "extract_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_01_extract_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "create_tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "extract_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_02_create_tables",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "create_sqlite",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "create_tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_03_create_sqlite",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-19T06:44:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

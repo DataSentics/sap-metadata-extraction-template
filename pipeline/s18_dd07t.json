@@ -1,6 +1,7 @@
 {
-	"name": "s18_CDSViews_association_conditions",
+	"name": "s18_dd07t",
 	"properties": {
+		"description": "Domain texts",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "DDLANGUAGE EQ 'E'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "DD05B"
+							"table_name": "DD07T"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/dd05b"
+							"path": "s18/metadata/dd07t"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/domains"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-05-26T18:57:57Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

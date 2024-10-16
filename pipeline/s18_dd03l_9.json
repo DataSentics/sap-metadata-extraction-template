@@ -1,0 +1,74 @@
+{
+	"name": "s18_dd03l_9",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy into parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SapTableSource",
+						"rfcTableOptions": "FIELDNAME NE '.INCLUDE'\nAND FIELDNAME NE '.INCLU--AP'\nAND FIELDNAME NE '.INCLU-_R'\nAND POSITION LIKE '%9'",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy",
+							"blockSizeInMB": 100
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "s18_table_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "DD03L"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sapdemo_datalake_target_full_load_parquet",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "raw",
+							"path": "s18/metadata/dd03l_parts/9"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "s18_metadata/01_extract_data/DD03L"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-21T11:05:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

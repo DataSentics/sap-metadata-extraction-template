@@ -1,6 +1,7 @@
 {
-	"name": "s18_extractor_components",
+	"name": "s18_rodsappl",
 	"properties": {
+		"description": "Extractor components",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "OBJVERS EQ 'A' \n",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZEXTRCOMP"
+							"table_name": "RODSAPPL"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/z_extractorcomponents"
+							"path": "s18/metadata/rodsappl"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/extractors"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-05-26T10:14:23Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

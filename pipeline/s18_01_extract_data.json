@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "application_components",
+				"name": "dd02b",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"policy": {
@@ -12,18 +12,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_application_components",
+						"referenceName": "s18_dd02b",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_metadata",
+				"name": "dd02l",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "domains_metadata",
+						"activity": "dd02b",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -35,18 +35,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_metadata",
+						"referenceName": "s18_dd02l",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_columns_metadata",
+				"name": "dd02t",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_metadata",
+						"activity": "dd02l",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -58,18 +58,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_columns_metadata",
+						"referenceName": "s18_dd02t",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_associations",
+				"name": "dd03l",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_columns_metadata",
+						"activity": "dd02t",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -81,18 +81,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_associations",
+						"referenceName": "s18_dd03l",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_association_conditions",
+				"name": "dd03nd",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_associations",
+						"activity": "dd03l",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -104,18 +104,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_association_conditions",
+						"referenceName": "s18_dd03nd",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "tables_metadata",
+				"name": "dd04t",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_dependencies",
+						"activity": "dd08b",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -127,18 +127,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_tables_metadata",
+						"referenceName": "s18_dd04t",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "table_columns_metadata",
+				"name": "dd07t",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "tables_metadata",
+						"activity": "dd05s",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -150,18 +150,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_table_columns_metadata",
+						"referenceName": "s18_dd07t",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "extractor_metadata",
+				"name": "dd26s",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "table_foreign_key_conditions",
+						"activity": "dd08t",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -173,18 +173,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_extractor_metadata",
+						"referenceName": "s18_dd26s",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "extractor_columns_metadata",
+				"name": "dd27s",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "extractor_metadata",
+						"activity": "dd26s",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -196,18 +196,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_extractor_columns_metadata",
+						"referenceName": "s18_dd27s",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "domains_metadata",
+				"name": "ddddlsrct",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "application_components",
+						"activity": "dd27s",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -219,18 +219,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_domains_metadata",
+						"referenceName": "s18_ddddlsrct",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_columns_annotations",
+				"name": "ddldependency",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_association_conditions",
+						"activity": "ddheadanno",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -242,18 +242,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_columns_annotations",
+						"referenceName": "s18_ddldependency",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "CDSViews_dependencies",
+				"name": "df14l",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "CDSViews_columns_annotations",
+						"activity": "ddldependency",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -265,18 +265,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_CDSViews_dependencies",
+						"referenceName": "s18_df14l",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "table_foreign_key_conditions",
+				"name": "df14t",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "table_foreign_keys",
+						"activity": "df14l",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -288,18 +288,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_table_foreign_key_conditions",
+						"referenceName": "s18_df14t",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "table_foreign_keys",
+				"name": "roosource",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "table_columns_metadata",
+						"activity": "roosfield",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -311,18 +311,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_table_foreign_keys",
+						"referenceName": "s18_roosource",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			},
 			{
-				"name": "extractor_components",
+				"name": "tadir",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "extractor_columns_metadata",
+						"activity": "roosource",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -334,7 +334,260 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "s18_extractor_components",
+						"referenceName": "s18_tadir",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "tdevc",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "tadir",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_tdevc",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ddheadanno",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ddddlsrct",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_ddheadanno",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "roosfield",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "rodsapplt",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_roosfield",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "rodsappl",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "df14t",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_rodsappl",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "rodsapplt",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "rodsappl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_rodsapplt",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd05s",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "dd04t",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd05s",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd08l",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "dd07t",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd08l",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd08t",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "dd08l",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd08t",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd01l",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "tdevc",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd01l",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd05b",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "dd03nd",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd05b",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "dd08b",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "dd05b",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_dd08b",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

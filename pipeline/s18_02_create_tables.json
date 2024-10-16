@@ -1,0 +1,52 @@
+{
+	"name": "s18_02_create_tables",
+	"properties": {
+		"activities": [
+			{
+				"name": "create_bronze_tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_02a_create_bronze_tables",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "create_silver_tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "create_bronze_tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_02b_create_silver_tables",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-19T06:26:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

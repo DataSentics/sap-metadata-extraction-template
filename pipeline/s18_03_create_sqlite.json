@@ -1,0 +1,75 @@
+{
+	"name": "s18_03_create_sqlite",
+	"properties": {
+		"activities": [
+			{
+				"name": "import_silver",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_03a_import_silver",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "postprocessing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "import_silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_03b_postprocessing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "advanced_data_models",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "postprocessing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "s18_03c_advanced_data_models",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "s18_metadata"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-07T07:53:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

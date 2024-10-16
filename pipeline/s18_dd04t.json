@@ -1,6 +1,7 @@
 {
-	"name": "s18_extractor_metadata",
+	"name": "s18_dd04t",
 	"properties": {
+		"description": "CDSView column texts",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "AS4LOCAL EQ 'A'\nAND DDLANGUAGE EQ 'E'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZEXTRMETADATA"
+							"table_name": "DD04T"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/z_extractorsmetadata"
+							"path": "s18/metadata/dd04t"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/CDSViews"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-05-26T10:14:23Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

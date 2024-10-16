@@ -1,6 +1,7 @@
 {
-	"name": "s18_CDSViews_dependencies",
+	"name": "s18_roosource",
 	"properties": {
+		"description": "Extractors",
 		"activities": [
 			{
 				"name": "copy into parquet",
@@ -17,8 +18,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "OBJVERS EQ 'A'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "ZCDSDEPS"
+							"table_name": "ROOSOURCE"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/zcdsdeps"
+							"path": "s18/metadata/roosource"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/extractors"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-06-29T08:11:24Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

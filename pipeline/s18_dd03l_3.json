@@ -1,5 +1,5 @@
 {
-	"name": "s18_CDSViews_associations",
+	"name": "s18_dd03l_3",
 	"properties": {
 		"activities": [
 			{
@@ -17,15 +17,17 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "",
+						"rfcTableOptions": "FIELDNAME NE '.INCLUDE'\nAND FIELDNAME NE '.INCLU--AP'\nAND FIELDNAME NE '.INCLU-_R'\nAND POSITION LIKE '%3'",
 						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "PreserveHierarchy"
+							"copyBehavior": "FlattenHierarchy",
+							"blockSizeInMB": 100
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
@@ -46,7 +48,7 @@
 						"referenceName": "s18_table_source",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "DD08B"
+							"table_name": "DD03L"
 						}
 					}
 				],
@@ -56,17 +58,17 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"path": "s18/metadata/dd08b"
+							"path": "s18/metadata/dd03l_parts/3"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "s18_metadata/extraction"
+			"name": "s18_metadata/01_extract_data/DD03L"
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-05-26T18:57:57Z"
+		"lastPublishTime": "2024-05-21T11:05:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
