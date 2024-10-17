@@ -1,52 +1,74 @@
-# SAP S/4 Metadata Extraction
+# SAP ECC or S/4 Metadata Extraction
 
 ## Motivation
 
-Azure data engineers usually don't have much experience working with SAP data. Moreover, they are often not granted access to the source SAP ERP for exploration. Based on our experience from previous projects, we selected a set relevant SAP tables and Azure Data Factory extraction pipelines to bring the most important SAP ERP object metadata to Azure Data Lake, thereby helping data engineers explore SAP data sources, specific fields, and their relationships.
-
-In the first stage, the base SAP tables are ingested into Azure Blob storage. From here, they can be further process by a Data platform of choice to provide an exhaustive data model representing all relationships between SAP objects of a business value, which are to be extracted.
+Azure data engineers usually don't have much experience working with SAP data. Moreover, they are often not granted access to the source SAP ERP for exploration. Based on our experience from previous projects, we selected relevant SAP tables and Azure Data Factory extraction pipelines to bring the most important SAP ERP object metadata to Azure Data Lake, thereby helping data engineers explore SAP data sources, specific fields, and their relationships.
 
 ## Pre-built Azure DataFactory (ADF) Pipelines
 
-We provide you with a pre-built configuration to set up the metadata extraction pipelines in your ADF quickly.
+We provide you with a pre-built configuration to quickly set up the metadata extraction pipelines in your ADF. The SAP tables are extracted into Azure Blob Storage and can be further processed to provide a more developer-friendly data model.
 
-### Extracted tables list
+Please note that, for some tables, we filter out unnecessary rows to minimize the amount of transferred data. Filters are defined within the ADF pipelines themselves.
 
-Our metadata pipeline extracts 26 tables contained in every SAP ERP which can be composed into advanced easy-to-understand DD (Data dictionary) data model.
+## Extracted tables list
 
-Note, that the tables are not always exported exactly as they are stored in the ABAP, but we sometimes apply simple filters on them in order to minimize amount of the ingested data.
+Our metadata pipeline extracts 26 tables that exist in every SAP ERP:
 
-The extracted tables are the following:
+### General Tables
 
-| Table name | Description | Category |
-|---|---|---|
-| **DD01L** | Domain data | Domains |
-| **DD02B** | DD: Header for Structured Objects	| CDS views |
-| **DD02L** | Detailed metadata of SAP tables | Tables |
-| **DD02T** | SAP DD: SAP Table Texts | Tables |
-| **DD03L** | Field definition of tables | General |
-| **DD03ND** | DD: Attributes of a Node of a Structured Object | CDS views |
-| **DD04T** | DD: Descriptions of fields | CDS views |
-| **DD05B** | DD: Associations for Structured Objects: Fields | CDS views |
-| **DD05S** | Foreign key fields | Tables |
-| **DD07T** | DD: Texts for Domain Fixed Value | Domains |
-| **DD08B** | DD: Associations (Headers) for Structured Objects	 | CDS views |
-| **DD08L** | R/3 DD: relationship definitions | Tables |
-| **DD08T** | Texts on the relationship definitions	| Tables |
-| **DD26S** | Base tables and foreign key relationships for a view | CDS views |
-| **DD27S** | Fields in an Aggregate (View, MC Object, Lock Object) | CDS views |
-| **DDDDLSRCT** | DDL Source Texts | CDS views |
-| **DDHEADANNO** | DD: Annotations: Header | CDS views |
-| **DDLDEPENDENCY** | DD: Objects in a DDL Source | CDS views |
-| **DF14L** | Application Components | Application components |
-| **DD14T** | Business Application Component Names | Application components |
-| **RODSAPPL** | DataSource Application Components | Extractors |
-| **RODSAPPT** | Texts for Application Components of a DataSource | Extractors |
-| **ROOSFIELD** | DataSource Fields | Extractors |
-| **ROOSOURCE** | Table Header for OLTP Sources | Extractors |
-| **TADIR** | Directory of Repository Objects | General |
-| **TDEVC** | Packages | General |
+| Table name | Description |
+|---|---|
+| **DD03L** | Columns for tables and extractors |
+| **TADIR** | Additional attributes of repository objects |
 
+### Application Components & Packages
+
+| Table name | Description |
+|---|---|
+| **DF14L** | Application components |
+| **DD14T** | Application components texts |
+| **TDEVC** | Packages |
+
+### Domains
+
+| Table name | Description |
+|---|---|
+| **DD01L** | Domains |
+| **DD07T** | Domain texts |
+
+### Extractors
+
+| Table name | Description |
+|---|---|
+| **ROOSOURCE** | Extractors |
+| **ROOSFIELD** | Extractor columns |
+| **RODSAPPL** | Extractor components |
+| **RODSAPPT** | Extractor components texts |
+
+### CDSViews
+
+| Table name | Description |
+|---|---|
+| **DDLDEPENDENCY** | CDSViews |
+| **DD02B** | RAW (case sensitive) CDSView names	|
+| **DDDDLSRCT** | CDSView texts |
+| **DD03ND** | CDSView columns |
+| **DD04T** | CDSView column texts |
+| **DD08B** | CDSView associations	|
+| **DD05B** | CDSView association conditions |
+| **DD26S** | CDSView dependencies |
+| **DD27S** | CDSView names mapping |
+| **DDHEADANNO** | CDSView header annotations |
+
+### Tables
+
+| Table name | Description |
+|---|---|
+| **DD02L** | Tables |
+| **DD02T** | Table texts |
+| **DD05S** | Table foreign key conditions |
+| **DD08L** | Table foreign keys |
+| **DD08T** | Table foreign keys texts	|
 
 ## Installation
 
