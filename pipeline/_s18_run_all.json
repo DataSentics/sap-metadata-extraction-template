@@ -17,52 +17,6 @@
 					},
 					"waitOnCompletion": true
 				}
-			},
-			{
-				"name": "create_tables",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "extract_data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "s18_02_create_tables",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "create_sqlite",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "create_tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "s18_03_create_sqlite",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"folder": {
