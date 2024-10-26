@@ -6,7 +6,7 @@
 		"annotations": [],
 		"type": "SapTable",
 		"typeProperties": {
-			"clientId": "600",
+			"clientId": "",
 			"sncMode": false,
 			"userName": "",
 			"server": "",
